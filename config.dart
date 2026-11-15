@@ -2,7 +2,7 @@
 // Pega aquí la Project URL y la publishable/anon key de Supabase.
 // NUNCA pongas la service_role key en una aplicación móvil.
 const String supabaseUrl = 'https://jlpxiphqpwfpzsqiutfh.supabase.co';
-const String supabaseAnonKey = 'TU_PUBLISHABLE_O_ANON_KEY';
+const String supabaseAnonKey = 'sb_publishable_Zt21icIj1xkxZr1OuA-Iow_JrHnBi_l';
 
 bool get supabaseConfigured =>
     supabaseUrl.startsWith('https://') &&
