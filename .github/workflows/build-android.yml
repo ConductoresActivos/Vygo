@@ -33,6 +33,31 @@ jobs:
       - name: Crear plataforma Android
         run: flutter create --platforms=android .
 
+      - name: Agregar permiso de Internet
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          manifest = Path("android/app/src/main/AndroidManifest.xml")
+          content = manifest.read_text()
+
+          permission = '<uses-permission android:name="android.permission.INTERNET" />'
+
+          if "android.permission.INTERNET" not in content:
+              marker = "<application"
+              if marker not in content:
+                  raise SystemExit("No se encontró la etiqueta application")
+
+              content = content.replace(
+                  marker,
+                  permission + "\n    " + marker,
+                  1
+              )
+              manifest.write_text(content)
+
+          print("Permiso de Internet verificado correctamente.")
+          PY
+
       - name: Instalar dependencias
         run: flutter pub get
 
